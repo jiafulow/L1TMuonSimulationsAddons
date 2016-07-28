@@ -1,6 +1,6 @@
-diff --git a/L1Trigger/L1TMuonEndCap/src/PatternRecognition.cc b/L1Trigger/L1TMuonEndCap/src/PatternRecognition.cc
-index b6bd379..6618db6 100644
---- a/L1Trigger/L1TMuonEndCap/src/PatternRecognition.cc
+diff --git a/L1Trigger/L1TMuonEndCap/src/PatternRecognition.cc.orig b/L1Trigger/L1TMuonEndCap/src/PatternRecognition.cc
+index deaa6eb..d67e207 100644
+--- a/L1Trigger/L1TMuonEndCap/src/PatternRecognition.cc.orig
 +++ b/L1Trigger/L1TMuonEndCap/src/PatternRecognition.cc
 @@ -9,16 +9,16 @@
  
@@ -29,15 +29,14 @@ index b6bd379..6618db6 100644
   
   
   PatternOutput DetectPatterns(ZonesOutput Eout){
-@@ -110,13 +110,13 @@ PhiMemoryImage patterns[PATTERN_SIZE] = {pattern8, pattern9, pattern6, pattern7,
+@@ -112,12 +112,12 @@ PhiMemoryImage patterns[PATTERN_SIZE] = {pattern8, pattern9, pattern6, pattern7,
   
   		for(int k=0;k<192;k++){//was 128
  	
 -			int qr = ranka_t[zone][k-1], ql = ranka_t[zone][k+1], qc = ranka_t[zone][k];
 +			int qr = 0, ql = 0, qc = ranka_t[zone][k];
  			
- 			//if(qc && verbose)
- 			//	std::cout<<"\n"<<k<<":qc = "<<qc<<" straight: "<<stra[zone][k]<<"  lya: "<<lya[zone][k]<<std::endl; 
+ 			
  		
 -			if(k==0){qr=0;}
 -			if(k==191){ql=0;}//was 127
@@ -45,4 +44,4 @@ index b6bd379..6618db6 100644
 +			if(k<191){ql=ranka_t[zone][k+1];}//was 127
  		
  			if((qc <= ql) || (qc < qr)){qc = 0;}
- 		
+ 			
